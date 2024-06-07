@@ -9,10 +9,4 @@
         <xsl:param name="sequence" as="item()*"/>
         <xsl:sequence select="$sequence ! $mapper(.)"/>
     </xsl:function>
-
-    <xsl:template match="/">
-        <output>
-            <xsl:sequence select="sequence:map(string-length#1,('hello','world'))"/>
-        </output>
-    </xsl:template>
 </xsl:stylesheet>

@@ -3,30 +3,7 @@
                 version="3.0"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns:array="http://www.w3.org/2005/xpath-functions/array"
-                xmlns:maybe="http://www.kookerella.com/maybe"
-                xmlns:sequence="http://kookerella.com/xsl:sequence"
-                xmlns:kooks="http://www.kookerella.com">
-    <xsl:output method="xml" indent="yes"/>
-
-    <xsl:function name="kooks:safeDivision" as="array(xs:numeric)">
-        <xsl:param name="numerator" as="xs:numeric"/>        
-        <xsl:param name="denominator" as="xs:numeric"/>
-        <xsl:choose> 
-            <xsl:when test="not($denominator eq 0)">
-                <xsl:sequence select="maybe:some($numerator div $denominator)"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:sequence select="maybe:none()"/>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:function>
-
-    <xsl:function name="sequence:map" as="item()*">
-        <xsl:param name="mapper" as="function(item()*) as item()*"/>
-        <xsl:param name="sequence" as="item()*"/>
-        <xsl:sequence select="$sequence ! $mapper(.)"/>
-    </xsl:function>
-
+                xmlns:maybe="http://www.kookerella.com/maybe">
     <xsl:function name="maybe:some" as="array(*)">
         <xsl:param name="value" as="item()*"/>
         <xsl:sequence select="array { $value }"/>
@@ -66,16 +43,4 @@
                 function($value) { 'Some(' || $value || ')' },
                 $maybe)"/>
     </xsl:function>
-
-    <xsl:template match="/">
-        <output>
-            <!-- calculations as maybe(xs:numeric)* -->
-            <xsl:variable name="calculations" as="array(xs:numeric)*" 
-                select="(
-                    kooks:safeDivision(1,1),
-                    kooks:safeDivision(1,2),
-                    kooks:safeDivision(2,0))"/>
-            <xsl:sequence select="sequence:map(maybe:pprint#1, $calculations)"/>
-        </output>    
-    </xsl:template>
 </xsl:stylesheet>

@@ -23,4 +23,12 @@
         <xsl:param name="g" as="function(item()*) as item()*"/>
         <xsl:sequence select="function($value) { $g($f($value)) }"/>
     </xsl:function>
+
+    <!-- (B -> C) -> (A -> B) -> (A -> C) -->
+    <!-- function(function(B) as C,function(A) as B) as function(A) as C -->
+    <xsl:function name="function:map" as="function(item()*) as item()*">
+        <xsl:param name="mapper" as="function(item()*) as item()*"/>
+        <xsl:param name="func" as="function(item()*) as item()*"/>
+        <xsl:sequence select="function:compose($mapper,$func)"/>
+    </xsl:function>
 </xsl:stylesheet>
