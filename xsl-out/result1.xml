@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<output>
+   <associative>
+      <expression1>
+         <wibble/>
+         <bar/>
+         <foo/>
+      </expression1>
+      <expression2>
+         <wibble/>
+         <bar/>
+         <foo/>
+      </expression2>
+   </associative>
+   <identity>
+      <expression1>
+         <wibble/>
+         <bar/>
+      </expression1>
+      <expression2>
+         <wibble/>
+         <bar/>
+      </expression2>
+   </identity>
+</output>

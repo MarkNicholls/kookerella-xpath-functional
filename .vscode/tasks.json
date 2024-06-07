@@ -1,0 +1,22 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "xslt",
+			"label": "xslt: Saxon Transform (New)",
+			"saxonJar": "${config:XSLT.tasks.saxonJar}",
+			"xsltFile": "${workspaceFolder}/first.xslt",
+			"xmlSource": "${workspaceFolder}/first.xml",
+			"resultPath": "${workspaceFolder}/xsl-out/result1.xml",
+			"allowSyntaxExtensions40": "off",
+			"messageEscaping": "adaptive",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"problemMatcher": [
+				"$saxon-xslt"
+			]
+		}
+	]
+}
